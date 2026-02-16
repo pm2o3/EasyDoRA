@@ -1,12 +1,12 @@
 # EasyDora
 
-The only open-source DoRA character LoRA trainer that actually works at inference. Minimal, GUI-less, one command — specify a trigger word and train.
+The only open-source DoRA character LoRA trainer that actually works at inference. Minimal, GUI-less, one command. Specify a trigger word and train.
 
-Built for **IllustriousXL** variants (anime SDXL models). Optimized for **RTX 5070 TI** (16GB VRAM). Produces production-ready `.safetensors` checkpoints compatible with ComfyUI, Forge, Reforge, and A1111.
+Built for **IllustriousXL** variants (anime SDXL models). Optimized for RTX 5070 TI (16GB VRAM). Produces production-ready `.safetensors` checkpoints compatible with ComfyUI, Forge, Reforge, and A1111.
 
 ## Why EasyDora?
 
-Every other open-source DoRA implementation (including Kohya's) ships `dora_scale` as a **1D tensor**. Forge/Reforge's `weight_decompose` divides by a `[out, 1]` weight norm — a 1D `[N]` vector broadcasts as `[1, N]`, creating an `[N, N]` cross-product that silently corrupts square weight matrices and crashes on non-square ones (like cross-attention `to_k`). We fix this by saving `dora_scale` as 2D `[N, 1]`.
+Every other open-source DoRA implementation (including Kohya's) ships `dora_scale` as a 1D tensor. Forge/Reforge's `weight_decompose` divides by a `[out, 1]` weight norm; a 1D `[N]` vector broadcasts as `[1, N]`, creating an `[N, N]` cross-product that silently corrupts square weight matrices and crashes on non-square ones (like cross-attention `to_k`). We fix this by saving `dora_scale` as 2D `[N, 1]`.
 
 ## Quick Start
 
@@ -36,7 +36,7 @@ echo "chr_sakura" > Dataset/trigger_word.txt && python train.py  # File
 python train.py                     # Interactive prompt
 ```
 
-Pick something **rare and unique** — `chr_mychar`, `sks_name`, `r0gue_oc`. Avoid real words or existing Danbooru tags.
+Pick something rare and unique: `chr_mychar`, `sks_name`, `r0gue_oc`. Avoid real words or existing Danbooru tags.
 
 ## Folder Structure
 
@@ -139,7 +139,7 @@ If your dataset is semi-realistic anime and you train on a flat-shading base, th
 
 Checkpoints are saved in Kohya format for maximum compatibility:
 
-- `lora_down.weight` — rank x in_features (low-rank factor A)
+- `lora_down.weight` — rank x in_features (low-rank factor A) 
 - `lora_up.weight` — out_features x rank (low-rank factor B)
 - `.alpha` — scaling factor (float tensor, NOT optional)
 - `dora_scale` — DoRA magnitude vector, **2D [N, 1]** (the critical fix)
@@ -306,3 +306,4 @@ MIT - do whatever you want with it.
 ---
 
 No PhD required. No 47-tab GUI.
+
