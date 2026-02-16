@@ -1,0 +1,22 @@
+# CUDA 12.8 / Python 3.12
+
+# Core ML
+torch>=2.5.0
+torchvision>=0.20.0
+
+# Diffusion models
+diffusers>=0.32.0
+transformers>=4.47.0
+accelerate>=1.2.0
+
+# LoRA training
+peft>=0.13.0
+bitsandbytes>=0.44.0
+prodigyopt>=1.0
+
+# File formats
+safetensors>=0.4.0
+pillow>=11.0.0
+
+# Progress display
+tqdm>=4.67.0
